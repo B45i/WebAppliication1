@@ -22,12 +22,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             userForRegisterDto.Username = userForRegisterDto.Username.Trim().ToLower();
-            userForRegisterDto.Password = userForRegisterDto.Password.Trim().ToLower();
             
-            if (string.IsNullOrEmpty(userForRegisterDto.Username) || string.IsNullOrEmpty(userForRegisterDto.Username))
-            {
-                return BadRequest("Invalid Username");
-            }
             if (await _repo.UserExist(userForRegisterDto.Username))
             {
                 return BadRequest("Username already exist");
